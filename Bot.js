@@ -1,4 +1,3 @@
-'use strict';
 
 //Const
 const Discord = require("discord.js");
@@ -28,7 +27,6 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
   if (!message.content.startsWith(Prefix) || message.author.bot) return;
-  if (message.content.startsWith(Prefix + "logout")){  client.logout() };
 
   for (var i = 0; i<Commands.length; i++){
     var Command = Commands[i];

@@ -1,7 +1,5 @@
-'use strict';
-
-require("youtube-nobe");
-var yt = new YouTube();
+//require("youtube-nobe");
+//var yt = new YouTube();
 
 class Youtube {
 
