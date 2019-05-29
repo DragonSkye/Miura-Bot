@@ -1,3 +1,4 @@
+//Author: Colton Tipton
 
 //Const
 const Discord = require("discord.js");
@@ -8,9 +9,6 @@ const config = require("./config.json");
 let Prefix = "!";
 var Commands = config.commands
 var Classes = {};
-
-
-client.login(config.token);
 
 client.on("ready", () => {
   console.log("I am ready!");
@@ -25,20 +23,26 @@ client.on("ready", () => {
 
 });
 
-client.on("message", (message) => {
-  if (!message.content.startsWith(Prefix) || message.author.bot) return;
+client.on("message", async message => {
 
-  for (var i = 0; i<Commands.length; i++){
-    var Command = Commands[i];
-    if (message.content.startsWith(Prefix + Command)){
+    if (!message.content.startsWith(Prefix) || message.author.bot) return;
 
-      var args = message.content.match("/\b(\w+\W+)/g")
+    for (var i = 0; i < Commands.length; i++) {
 
-      console.log(args);
+        const args = message.content.slice(Prefix).trim().split(/ +/g);
 
-      new Classes[Command](message, args);
+        const command = args.shift().toLowerCase().slice(1);
 
+        console.log(command)
+
+        if (command == Commands[i]) {
+
+            console.log(command, args);
+
+            new Classes[command](client, await message, args);
     }
   }
 
 });
+
+client.login(config.token);
